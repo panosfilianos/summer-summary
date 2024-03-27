@@ -4,21 +4,41 @@ import argparse
 from argparse import Namespace, ArgumentParser
 import re
 from logging import Logger
+from dataclasses import dataclass
 
-class ArgParser():
+@dataclass
+class Arguments():
     """
-    The parser for any CLI arguments
+    A dataclass holding all argument data
+
+    Properties:
+        openai: boolean: Use the best GPT from OpenAPI
+        os: boolean: Use the best open source GPT available locally
+        url: string: The YouTube video link
+        s: string: The persona to summarize
+    """
+    openai: bool = False
+    os: bool= False
+    url: str = ''
+    s: str = ''
+
+
+class ArgManager():
+    """
+    The manager for any CLI arguments
 
     Properties:
         parser: ArgumentParser: The class instance parsing the args
         args: Namespace: An object holding any args
         logger: Logger: The app logger provided
-
+        args: Arguments: A dataclass holding all the argument data
     """
 
     parser: ArgumentParser = argparse.ArgumentParser(description="A parser for the arguments of the main application")
-    args: Namespace = None
+    arg_namespace: Namespace = None
     logger: Logger = None
+
+    args: Arguments
 
     def __init__(self, logger: Logger):
         """
@@ -36,9 +56,9 @@ class ArgParser():
 
     def parse(self):
         """
-        Parses the argumens from the CLI
+        Parses the argumens from the CLI into the Namespace instance
         """
-        self.args = self.parser.parse_args()
+        self.arg_namespace = self.parser.parse_args()
 
     def valid_args(self):
         """
@@ -53,11 +73,27 @@ class ArgParser():
             * Validate the url comes from YouTube with a regex.
         """
         youtube_url_regex_expr = r"(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)(\/watch\?v=).+"
-        if not self.args.url:
+        if not self.arg_namespace.url:
             self.logger.error('No URL provided')
             return False
-        elif not re.match(youtube_url_regex_expr, self.args.url):
+        elif not re.match(youtube_url_regex_expr, self.arg_namespace.url):
             self.logger.error('The URL provided is not matched as a YouTube URL')
             return False
         else:
             return True
+        
+
+    def pass_args_to_vars(self):
+        """
+        Passes the args from the Namespace instance to separate variables.
+        Should be called after the args have been validated to be valid.
+
+        Returns:
+            None
+        """
+
+        self.args.openai = self.arg_namespace.openai
+        self.args.os = self.arg_namespace.os
+        self.args.url = self.arg_namespace.url
+        self.args.s = self.arg_namespace.s
+
