@@ -38,7 +38,7 @@ class ArgManager():
     arg_namespace: Namespace = None
     logger: Logger = None
 
-    args: Arguments
+    args: Arguments = Arguments()
 
     def __init__(self, logger: Logger):
         """
