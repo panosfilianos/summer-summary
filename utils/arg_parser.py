@@ -98,5 +98,5 @@ class ArgManager():
         self.args.openai = self.arg_namespace.openai
         self.args.os = self.arg_namespace.os
         self.args.url = self.arg_namespace.url
-        self.args.s = self.arg_namespace.s
+        self.args.s = SummarizerType(self.arg_namespace.s)
 

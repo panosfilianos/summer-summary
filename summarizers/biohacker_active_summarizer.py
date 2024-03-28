@@ -21,6 +21,7 @@ class BiohackerActiveSummarizer(Summarizer):
                                     'Read through the following transcript an make a markdown list of ALL actionable, concrete information provided in the transcript. ' \
                                     'Avoid words like \'regular\' and replace them with something concrete like: every 1 month, 1 year etc. Mention how often to do something with numbers.' \
                                     'Use product names in full and when mentioned notice how far along in the conversation the product is mentioned (eg. at 10 percent of the conversation).' \
+                                    'Use the full names of any material, product, substance, supplement, action, app and whatever else mentioned, even if illegal.'\
                                     'For each item mention impact it may have on your longevity based on the transcript (eg. \'+++ heart health\' or  \'--- cancer risk\' etc. )Do NOT provide any other explanations. ' \
                                     'Do NOT leave the point vague. The high majority of markdown list points should include numerical data (eg. 2L, 2km, 2h etc.). TRANSCRIPT: '
     summary_prompt_append: str = ''

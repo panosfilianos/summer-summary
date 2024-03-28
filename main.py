@@ -7,9 +7,11 @@ import os
 # Import internal libraries
 from utils.arg_parser import ArgManager
 from utils.basic_logger import basic_logger
-from data_managers.youtube_manager import YouTubeManager
-from summarizers.biohacker_active_summarizer import BiohackerActiveSummarizer
-from gpt_managers.openai_gpt_manager import OpenAIAPIGPTManager
+from utils.worflow_manager import WorkflowManager
+
+from data_managers.data_manager import DataManager
+from summarizers.summarizer import Summarizer
+from gpt_managers.gpt_manager import GPTManager
 
 
 def main():
@@ -31,20 +33,21 @@ def main():
     dotenv_path = '.env'
     load_dotenv(dotenv_path=dotenv_path)
 
-    # testing
+    workflow_manager = WorkflowManager()
+
     # get the YouTube data manager and fetch transcript
-    youtube_manager = YouTubeManager(logger=basic_logger)
-    data = youtube_manager.fetch_data(source=arg_parser.args.url)
+    data_manager: DataManager = workflow_manager.return_data_manager(args=arg_parser.args, logger=basic_logger)
+    data = data_manager.fetch_data(source=arg_parser.args.url)
     
     # get summarizer
-    biohacker_summarizer = BiohackerActiveSummarizer()
-    to_summarize = biohacker_summarizer.return_str_to_summarize(initial_str=data)
+    summarizer = workflow_manager.return_summarizer(args=arg_parser.args)
+    to_summarize = summarizer.return_str_to_summarize(initial_str=data)
 
     # get gpt manager
-    openai_gpt_manager = OpenAIAPIGPTManager(logger=basic_logger)
-    token_number = openai_gpt_manager.return_token_number(to_summarize=to_summarize)
-    if (openai_gpt_manager.valid_token_number(token_number=token_number)):
-        openai_gpt_manager.return_gpt_summary(to_summarize=to_summarize)
+    gpt_manager = workflow_manager.return_gpt_manager(args=arg_parser.args, logger=basic_logger)
+    token_number = gpt_manager.return_token_number(to_summarize=to_summarize)
+    if (gpt_manager.valid_token_number(token_number=token_number)):
+        gpt_manager.return_gpt_summary(to_summarize=to_summarize)
     else:
         basic_logger.error(token_number)
         return

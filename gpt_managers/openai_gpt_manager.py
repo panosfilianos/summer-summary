@@ -27,7 +27,7 @@ class OpenAIAPIGPTManager(GPTManager):
 
     gpt_connection_type: GPTConnectionType = GPTConnectionType.API
     token_number_max: int = 5000
-    gpt_encoding_type: GPTEncodingType = GPTEncodingType.OPENAI_GPT_3_1_2_TURBO
+    gpt_encoding_type: GPTEncodingType = GPTEncodingType.OPENAI_GPT_4
     encoding: tiktoken.Encoding
     logger: Logger
     client: OpenAI
