@@ -6,21 +6,24 @@ import re
 from logging import Logger
 from dataclasses import dataclass
 
+# Import internal libraries
+from enum_types.summarizer_types import SummarizerType
+
 @dataclass
 class Arguments():
     """
-    A dataclass holding all argument data
+    A dataclass holding all argument data and default values
 
     Properties:
         openai: boolean: Use the best GPT from OpenAPI
         os: boolean: Use the best open source GPT available locally
         url: string: The YouTube video link
-        s: string: The persona to summarize
+        s: SummarizerType: The persona to summarize
     """
     openai: bool = False
     os: bool= False
     url: str = ''
-    s: str = ''
+    s: SummarizerType = SummarizerType.DEFAULT
 
 
 class ArgManager():
