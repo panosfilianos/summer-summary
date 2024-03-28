@@ -4,6 +4,7 @@ from logging import Logger
 import tiktoken
 from openai import OpenAI
 import os
+import pprint
 
 # importing external libraries
 from gpt_managers.gpt_manager import GPTManager
@@ -25,8 +26,8 @@ class OpenAIAPIGPTManager(GPTManager):
     """
 
     gpt_connection_type: GPTConnectionType = GPTConnectionType.API
-    token_number_max: int = 10
-    gpt_encoding_type: GPTEncodingType = GPTEncodingType.OPENAI_GPT_4
+    token_number_max: int = 5000
+    gpt_encoding_type: GPTEncodingType = GPTEncodingType.OPENAI_GPT_3_1_2_TURBO
     encoding: tiktoken.Encoding
     logger: Logger
     client: OpenAI
@@ -63,8 +64,9 @@ class OpenAIAPIGPTManager(GPTManager):
                 }
             ]
         )
-        self.logger.error(chat_completion)
-        return chat_completion
+        print(chat_completion.choices[0].message.content)
+        # self.logger.error(chat_completion.choices[0].message.content)
+        return chat_completion.choices[0].message.content
 
     def return_token_number(self, to_summarize: str) -> int:
         """

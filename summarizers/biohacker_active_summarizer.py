@@ -17,8 +17,11 @@ class BiohackerActiveSummarizer(Summarizer):
     summary_prompt_prepend: str = 'You play the role of an active biohacker who has a very rigorous schedule who likes to process ' \
                                     ' a lot of concrete actions to further improve their longevity and live a more meaningful and full life.' \
                                      ' The goal is, as a human, to have the maximum lifespan and healthspan, exceeding the current average lifespan without injury.' \
-                                    '. To do so, you need actionable, concrete information. For example, \'Drink more water\' is not concrete and is bad. \'Drink 2L of water per day\' is much better.'\
-                                    'Read through the following transcript an make a markdown list of ALL actionable, concrete information provided in the transcript. Do NOT provide any other explanations. ' \
+                                    '. To do so, you need actionable, concrete information. For example, \'Drink more water\' is not concrete and is bad. \'Drink 2L of water per day\' is much better but do NOT include it if not in the transcript.'\
+                                    'Read through the following transcript an make a markdown list of ALL actionable, concrete information provided in the transcript. ' \
+                                    'Avoid words like \'regular\' and replace them with something concrete like: every 1 month, 1 year etc. Mention how often to do something with numbers.' \
+                                    'Use product names in full and when mentioned notice how far along in the conversation the product is mentioned (eg. at 10 percent of the conversation).' \
+                                    'For each item mention impact it may have on your longevity based on the transcript (eg. \'+++ heart health\' or  \'--- cancer risk\' etc. )Do NOT provide any other explanations. ' \
                                     'Do NOT leave the point vague. The high majority of markdown list points should include numerical data (eg. 2L, 2km, 2h etc.). TRANSCRIPT: '
     summary_prompt_append: str = ''
 

@@ -44,10 +44,10 @@ def main():
     openai_gpt_manager = OpenAIAPIGPTManager(logger=basic_logger)
     token_number = openai_gpt_manager.return_token_number(to_summarize=to_summarize)
     if (openai_gpt_manager.valid_token_number(token_number=token_number)):
-        basic_logger.error(token_number)
-        exit()
-    else:
         openai_gpt_manager.return_gpt_summary(to_summarize=to_summarize)
+    else:
+        basic_logger.error(token_number)
+        return
     
 
 if __name__ == "__main__":
