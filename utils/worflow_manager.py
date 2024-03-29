@@ -12,6 +12,8 @@ from gpt_managers.openai_gpt_manager import OpenAIAPIGPTManager
 from summarizers.summarizer import Summarizer
 from summarizers.biohacker_active_summarizer import BiohackerActiveSummarizer
 from summarizers.prepper_summarizer import PrepperSummarizer
+from summarizers.stock_quant_analyst_summarizer import StockQuantAnalyst
+
 from summarizers.default_summarizer import DefaultSummarizer
 
 from enum_types.summarizer_types import SummarizerType
@@ -53,6 +55,8 @@ class WorkflowManager():
             return BiohackerActiveSummarizer()
         if (args.s is SummarizerType.PREPPER):
             return PrepperSummarizer()
+        if (args.s is SummarizerType.QUANT):
+            return StockQuantAnalyst()
         else:
             return DefaultSummarizer()
     
