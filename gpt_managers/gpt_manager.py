@@ -6,7 +6,7 @@ from logging import Logger
 import tiktoken
 
 # importing external libraries
-from enum_types.gpt_manager_types import GPTConnectionType, GPTEncodingType
+from enum_types.gpt_manager_types import GPTConnectionType, GPTModelType
 
 class GPTManager(ABC):
     """
@@ -15,7 +15,7 @@ class GPTManager(ABC):
     Properties:
         gpt_connection_type: GPTConnectionType: Defines the type of connectivity of the GPT manager (API, LOCAL etc.)
         token_number_max: int: The maximum number of tokens that a summarization input is allowed to have
-        gpt_encoding_type: GPTEncodingType: The encoding type that the model will use (eg. 'gpt-4')
+        gpt_encoding_type: GPTModelType: The encoding type that the model will use (eg. 'gpt-4')
         encoding: tiktoken.Encoding: The encoding type for the specific gpt_encoding_type
         logger: Logger: The basic logger available in the application
         client: any: The client interfacing with the GPT model
@@ -23,7 +23,7 @@ class GPTManager(ABC):
 
     gpt_connection_type: GPTConnectionType
     token_number_max: int
-    gpt_encoding_type: GPTEncodingType
+    gpt_encoding_type: GPTModelType
     encoding: tiktoken.Encoding
     logger: Logger
     client: any

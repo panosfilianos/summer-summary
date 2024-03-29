@@ -7,6 +7,7 @@ from logging import Logger
 from dataclasses import dataclass
 
 # Import internal libraries
+from enum_types.gpt_manager_types import GPTAPIType
 from enum_types.summarizer_types import SummarizerType
 
 @dataclass
@@ -15,12 +16,12 @@ class Arguments():
     A dataclass holding all argument data and default values
 
     Properties:
-        openai: boolean: Use the best GPT from OpenAPI
+        api: GPTAPIType: Use the best GPT API from OpenAPI, Anthropic etc.
         os: boolean: Use the best open source GPT available locally
         url: string: The YouTube video link
         s: SummarizerType: The persona to summarize
     """
-    openai: bool = False
+    api: GPTAPIType = GPTAPIType.OPENAI
     os: bool= False
     url: str = ''
     s: SummarizerType = SummarizerType.DEFAULT
@@ -50,7 +51,7 @@ class ArgManager():
         Returns:
             ArgumentParser: The ArgParser instance.
         """
-        self.parser.add_argument('--openai', action='store_true', help='Use the best GPT from OpenAPI')
+        self.parser.add_argument('--api', type=str, help='Use the best GPT API from OpenAPI, Anthropic etc')
         self.parser.add_argument('--os', action='store_true', help='Use the best open source GPT available locally')
         self.parser.add_argument('--url', type=str, help='The YouTube video link')
         self.parser.add_argument('--s', type=str, help='The persona to summarize')
@@ -95,7 +96,7 @@ class ArgManager():
             None
         """
 
-        self.args.openai = self.arg_namespace.openai
+        self.args.api = self.arg_namespace.api
         self.args.os = self.arg_namespace.os
         self.args.url = self.arg_namespace.url
         self.args.s = SummarizerType(self.arg_namespace.s)

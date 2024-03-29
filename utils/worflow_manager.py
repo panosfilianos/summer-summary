@@ -8,14 +8,13 @@ from data_managers.youtube_manager import YouTubeManager
 
 from gpt_managers.gpt_manager import GPTManager
 from gpt_managers.openai_gpt_manager import OpenAIAPIGPTManager
+from enum_types.gpt_manager_types import GPTAPIType
 
 from summarizers.summarizer import Summarizer
 from summarizers.biohacker_active_summarizer import BiohackerActiveSummarizer
 from summarizers.prepper_summarizer import PrepperSummarizer
 from summarizers.stock_quant_analyst_summarizer import StockQuantAnalyst
-
 from summarizers.default_summarizer import DefaultSummarizer
-
 from enum_types.summarizer_types import SummarizerType
 
 from utils.arg_parser import Arguments
@@ -71,4 +70,9 @@ class WorkflowManager():
         Returns:
             GPTManager: a GPTManager type instance
         """
-        return OpenAIAPIGPTManager(logger=logger)
+        if (args.s is GPTAPIType.OPENAI):
+            return OpenAIAPIGPTManager(logger=logger)
+        if (args.s is GPTAPIType.ANTHROPIC):
+            return OpenAIAPIGPTManager(logger=logger)
+        else:
+            return OpenAIAPIGPTManager(logger=logger)
