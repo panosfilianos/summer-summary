@@ -16,8 +16,14 @@ class StockQuantAnalyst(Summarizer):
     summarizer_type: SummarizerType = SummarizerType.DEFAULT
     summary_prompt_prepend: str = 'You are a machine generating a 200 IQ summary of the following video' \
                                     'The goal is to summarize the most actionable points of the video.'\
-                                    'Give me a list of the top 20 most important points mentioned'\
+                                    'Give me a list of the top 10 most important points mentioned'\
+                                    'Give me a list of the top 10 most important examples/experiences mentioned'\
+                                    'Give me a list of all books titles mentioned' \
+                                    'Give me a list of all movie titles mentioned' \
+                                    'Give me a list of all resources mentioned' \
                                     'TRANCRIPT:' 
+                                    # 'FINALLY: Output all companies mentioned (with bullish or bearish sentiment). Output all commodities mentioned (with bullish or bearish sentiment). Output all books mentioned. Output all movies mentioned.' \
+
                                     
                                     # 'TARGET AUDIENCE: The reader has 189 IQ. They are quantitative finance professionals with 30 years of experience'\
                                     # 'They are interest in: stocks, bonds, algorithmic trading, profit, yield curves, cryptocurrency, maximizing profit, minizing risk.'\
