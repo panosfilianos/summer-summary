@@ -96,7 +96,7 @@ class ArgManager():
             None
         """
 
-        self.args.api = self.arg_namespace.api
+        self.args.api = GPTAPIType(self.arg_namespace.api)
         self.args.os = self.arg_namespace.os
         self.args.url = self.arg_namespace.url
         self.args.s = SummarizerType(self.arg_namespace.s)
