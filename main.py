@@ -42,9 +42,11 @@ def main():
     # get summarizer
     summarizer = workflow_manager.return_summarizer(args=arg_parser.args)
     to_summarize = summarizer.return_str_to_summarize(initial_str=data)
+    print(summarizer)
 
     # get gpt manager
     gpt_manager = workflow_manager.return_gpt_manager(args=arg_parser.args, logger=basic_logger)
+    print(gpt_manager)
     token_number = gpt_manager.return_token_number(to_summarize=to_summarize)
     if (gpt_manager.valid_token_number(token_number=token_number)):
         gpt_manager.return_gpt_summary(to_summarize=to_summarize)
