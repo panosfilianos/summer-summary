@@ -64,6 +64,8 @@ You can use Summer Summary, plug in the YouTube video link and select the Biohac
 ## Contribution
 Feel free to contribute to the project any way you like (especially with new summarizing personas). Submit a pull request and we'll review it.
 
+For summarizing persona contribution, use ```summarizers/summarizer.py``` as a base.
+
 ## Notes
 - As Summer Summary uses the video's transcript, very long videos may generate a transcript larger than the context window. Currently, Summer Summary will fail. Down the line we aim to mitigate.
 
