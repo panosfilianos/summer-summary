@@ -22,6 +22,15 @@ class Summarizer(ABC):
     summary_prompt_append: str
 
     @abstractmethod
+    def __str__(self) -> str:
+        """
+        Represents the Summarizer as a string
+        
+        Returns:
+            str: The Summarizer representation as a string
+        """
+
+    @abstractmethod
     def return_str_to_summarize(self, initial_str: str) -> str:
         """
         A function that returns a string that will be submitted to a model for summary

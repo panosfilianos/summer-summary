@@ -29,6 +29,16 @@ class GPTManager(ABC):
     client: any
 
     @abstractmethod
+    def __str__(self) -> str:
+        """
+        Returns a representation of the GPT Manager as a string.
+
+        Returns:
+            string: The GPT Manager representation as string
+        """
+        pass
+
+    @abstractmethod
     def return_gpt_summary(self, to_summarize):
         """
         Returns the GPT summary of the provided prompt.

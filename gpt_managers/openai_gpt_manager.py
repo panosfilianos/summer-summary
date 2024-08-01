@@ -25,7 +25,7 @@ class OpenAIAPIGPTManager(GPTManager):
     """
 
     gpt_connection_type: GPTConnectionType = GPTConnectionType.API
-    token_number_max: int = 20000
+    token_number_max: int = 25000
     gpt_encoding_type: GPTModelType = GPTModelType.OPENAI_GPT_4_TURBO_PREVIEW
     encoding: tiktoken.Encoding
     logger: Logger
@@ -47,6 +47,15 @@ class OpenAIAPIGPTManager(GPTManager):
         # get the correct encoding for the selected GPT model
         self.encoding = tiktoken.encoding_for_model(self.gpt_encoding_type.value)
 
+    def __str__(self) -> str:
+        """
+        Returns a representation of the OpenAI API GPT Manager as a string.
+
+        Returns:
+            string: The GPT Manager representation as string
+        """
+        return 'OpenAI GPT API'
+
     def return_gpt_summary(self, to_summarize: str) -> str:
         """
         Returns the GPT summary of the provided prompt.
@@ -64,7 +73,6 @@ class OpenAIAPIGPTManager(GPTManager):
             ]
         )
         print(chat_completion.choices[0].message.content)
-        # self.logger.error(chat_completion.choices[0].message.content)
         return chat_completion.choices[0].message.content
 
     def return_token_number(self, to_summarize: str) -> int:

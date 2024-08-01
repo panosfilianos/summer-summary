@@ -26,7 +26,7 @@ class AnthropicAPIGPTManager(GPTManager):
     """
 
     gpt_connection_type: GPTConnectionType = GPTConnectionType.API
-    token_number_max: int = 20000
+    token_number_max: int = 25000
     gpt_encoding_type: GPTModelType = GPTModelType.OPENAI_GPT_4_TURBO_PREVIEW
     gpt_model_type = GPTModelType = GPTModelType.ANTHROPIC_CLAUDE_3_OPUS
     encoding: tiktoken.Encoding
@@ -50,6 +50,15 @@ class AnthropicAPIGPTManager(GPTManager):
         # WARNING: The use of the encoder here is a rough approximation of the tokens that will be used
         # Here we use OpenAI's tokenizer to get that rough approximation
         self.encoding = tiktoken.encoding_for_model(self.gpt_encoding_type.value)
+
+    def __str__(self) -> str:
+        """
+        Returns a representation of the Anthropic API GPT Manager as a string.
+
+        Returns:
+            string: The GPT Manager representation as string
+        """
+        return 'Anthropic GPT API'
 
     def return_gpt_summary(self, to_summarize: str) -> str:
         """

@@ -16,8 +16,8 @@ class StockQuantAnalyst(Summarizer):
     summarizer_type: SummarizerType = SummarizerType.DEFAULT
     summary_prompt_prepend: str = 'You are a machine generating a 200 IQ summary of the following video' \
                                     'The goal is to summarize the most actionable points of the video.'\
-                                    'Give me a list of the top 10 most important points mentioned'\
-                                    'Give me a list of the top 10 most important examples/experiences mentioned'\
+                                    'Give me a list of the top 11 most important points mentioned'\
+                                    'Give me a list of the top 11 most important examples/experiences mentioned'\
                                     'Give me a list of all books titles mentioned' \
                                     'Give me a list of all movie titles mentioned' \
                                     'Give me a list of all resources mentioned' \
@@ -46,6 +46,15 @@ class StockQuantAnalyst(Summarizer):
 
     def __init__(self):
         pass
+
+    def __str__(self) -> str:
+        """
+        Represents the Quant Summarizer as a string
+        
+        Returns:
+            str: The Summarizer representation as a string
+        """
+        return 'Quant Summarizer'
 
     def return_str_to_summarize(self, initial_str: str) -> str:
         """

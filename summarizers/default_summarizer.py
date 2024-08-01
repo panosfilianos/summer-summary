@@ -27,6 +27,15 @@ class DefaultSummarizer(Summarizer):
     def __init__(self):
         pass
 
+    def __str__(self) -> str:
+        """
+        Represents the Default Summarizer as a string
+        
+        Returns:
+            str: The Summarizer representation as a string
+        """
+        return 'Default Summarizer'
+
     def return_str_to_summarize(self, initial_str: str) -> str:
         """
         A function that returns a string that will be submitted to a model for summary after prepending the GPT prompt
